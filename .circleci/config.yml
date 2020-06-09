@@ -14,7 +14,7 @@ workflows:
           requires:
             - unit-test
       - deploy-to-test-cluster:
-          require:
+          requires:
             - build-image
 
 jobs:
