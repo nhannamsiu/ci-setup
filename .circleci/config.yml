@@ -9,34 +9,20 @@ workflows:
   version: 2
   main_flow:
     jobs:
-      - install
       - test
 
 jobs:
-  install:
-    executor: node
-    steps:
-      #pull commit
-      - checkout
-      #try to restore cache via both exact, partial matches
-      - restore_cache:
-          keys:
-            - v0-deps-{{ checksum "package-lock.json" }}
-            - v0-deps-
-      #run install again. If cache is found, this line takes under 1s
-      - run: npm install
-      #save cache, won't perform write if cache already exists
-      - save_cache:
-          paths:
-            - node_modules
-          key: v0-deps-{{ checksum "package-lock.json" }}
-      - run: cat package-lock.json
-      - run: echo "finished install job"
-
-
   test:
     executor: node
     steps:
       - checkout
-      - run: echo "should be run after install job"
-      - run: echo "finished test job"
+      - restore_cache:
+          keys:
+            - v0-deps-{{ checksum "package-lock.json" }}
+            - v0-deps-
+      - run: npm install
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v0-deps-{{ checksum "package-lock.json" }}
+      - run: node app
