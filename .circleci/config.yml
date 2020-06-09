@@ -28,5 +28,5 @@ jobs:
       - run:
           command: node app
           background: true
-      - run: sleep 5
+      # - run: sleep 5
       - run: curl localhost:8080
