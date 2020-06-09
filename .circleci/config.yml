@@ -9,7 +9,9 @@ workflows:
   version: 2
   main_flow:
     jobs:
-      - test
+      - unit-test
+      - build-image
+      - deploy-to-test-cluster
 
 jobs:
   unit-test:
@@ -37,7 +39,7 @@ jobs:
       - run: docker ps
       - run : echo "finished building and uploading docker image"
 
-  deploy-test-cluster:
+  deploy-to-test-cluster:
     executor: node
     steps:
       - run : echo "finished deploying to cluster"
