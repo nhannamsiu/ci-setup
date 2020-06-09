@@ -10,8 +10,12 @@ workflows:
   main_flow:
     jobs:
       - unit-test
-      - build-image
-      - deploy-to-test-cluster
+      - build-image:
+          requires:
+            - unit-test
+      - deploy-to-test-cluster:
+          require:
+            - build-image
 
 jobs:
   unit-test:
