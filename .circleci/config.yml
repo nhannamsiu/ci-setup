@@ -40,6 +40,7 @@ jobs:
   build-image:
     executor: node
     steps:
+      - setup_remote_docker
       - run: docker ps
       - run : echo "finished building and uploading docker image"
 
