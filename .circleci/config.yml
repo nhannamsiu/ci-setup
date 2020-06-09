@@ -17,6 +17,10 @@ workflows:
           requires:
             - build-image
 
+  sub_flow:
+    jobs:
+      - deploy-to-test-cluster
+
 jobs:
   unit-test:
     executor: node
