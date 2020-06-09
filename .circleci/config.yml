@@ -17,10 +17,6 @@ workflows:
           requires:
             - build-image
 
-  sub_flow:
-    jobs:
-      - deploy-to-test-cluster
-
 jobs:
   unit-test:
     executor: node
@@ -47,7 +43,12 @@ jobs:
       - setup_remote_docker
       - run: docker ps
       - run : echo "finished building and uploading docker image"
-
+      - run:
+          command: node app
+          background: true
+      - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
+      - run: curl localhost:8080
+      
   deploy-to-test-cluster:
     executor: node
     steps:
