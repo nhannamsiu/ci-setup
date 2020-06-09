@@ -18,11 +18,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v0-deps-{{ checksum "package-lock.json" }}
+            - v0-deps-{{ checksum "package.json" }}
             - v0-deps-
       - run: npm install
       - save_cache:
           paths:
             - ./node_modules
-          key: v0-deps-{{ checksum "package-lock.json" }}
-      - run: node app
+          key: v0-deps-{{ checksum "package.json" }}
+      - run:
+          command: node app
+          background: true
+      - run: curl localhost:8080

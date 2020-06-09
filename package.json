@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nhannamsiu/ci-setup#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "web3": "^1.2.8"
   }
 }
