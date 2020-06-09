@@ -1,6 +1,6 @@
 "use strict"
 const express = require('express')
-const Web3 = require('Web3')
+const Web3 = require('web3')
 
 let app = express()
 const port = 8080
