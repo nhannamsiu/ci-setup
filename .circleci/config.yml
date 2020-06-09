@@ -12,7 +12,7 @@ workflows:
       - test
 
 jobs:
-  test:
+  unit-test:
     executor: node
     steps:
       - checkout
@@ -30,3 +30,14 @@ jobs:
           background: true
       - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
       - run: curl localhost:8080
+
+  build-image:
+    executor: node
+    steps:
+      - run: docker ps
+      - run : echo "finished building and uploading docker image"
+
+  deploy-test-cluster:
+    executor: node
+    steps:
+      - run : echo "finished deploying to cluster"
