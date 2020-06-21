@@ -37,6 +37,8 @@ jobs:
           background: true
       - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
       - run: npm test
+      - run: pwd
+      - run: ls
       - run: touch log/log.txt
       - persist_to_workspace:
           root: ./
