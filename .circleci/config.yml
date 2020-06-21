@@ -23,6 +23,7 @@ jobs:
   unit-test:
     executor: node
     steps:
+      #prepare repo
       - checkout
       - restore_cache:
           keys:
@@ -33,14 +34,26 @@ jobs:
           paths:
             - ./node_modules
           key: v0-deps-{{ checksum "package.json" }}
+
+      #start server
       - run:
           command: node app
           background: true
       - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
-      - run: npm test
-      - run: pwd
-      - run: ls
-      - run: touch ./log/log.txt
+
+      #mocha test
+      - run: mkdir ~/junit
+      - run:
+        when: always
+        command: mocha test --reporter mocha-junit-reporter
+        environment:
+          MOCHA_FILE: ~/junit/test-results.xml
+     - store_test_results:
+          path: ~/junit
+      - store_artifacts:
+          path: ~/junit
+
+      #persist repo to workspace to avoid #prepare repo section
       - persist_to_workspace:
           root: ./
           paths:
@@ -49,14 +62,11 @@ jobs:
   build-image:
     executor: node
     steps:
-      - run: mkdir foo
+      - setup_remote_docker
       - attach_workspace:
-          at: /home/circleci/project/foo
+          at: ./
       - run: ls
-      - run: ls foo
-      # - setup_remote_docker
-      # - run: docker ps
-      # - run : echo "finished building and uploading docker image"
+      - run: docker ps
 
   deploy-to-test-cluster:
     executor: node
