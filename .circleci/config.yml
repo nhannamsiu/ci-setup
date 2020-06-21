@@ -39,7 +39,7 @@ jobs:
       - run: npm test
       - run: pwd
       - run: ls
-      - run: touch log/log.txt
+      - run: touch ./log/log.txt
       - persist_to_workspace:
           root: ./
           paths:
@@ -51,6 +51,7 @@ jobs:
       - attach_workspace:
           at: ~/ci-setup
       - run: pwd
+      - run: ls
       # - setup_remote_docker
       # - run: docker ps
       # - run : echo "finished building and uploading docker image"
