@@ -47,7 +47,7 @@ jobs:
     executor: node
     steps:
       - attach_workspace:
-        at: ~/ci-setup
+          at: ~/ci-setup
       - run: pwd
       # - setup_remote_docker
       # - run: docker ps
