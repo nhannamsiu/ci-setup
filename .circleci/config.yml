@@ -52,7 +52,8 @@ jobs:
           at: /home/circleci/project
       - run: pwd
       - run: ls
-      - run: cd ~ && pwd
+      - run: cd ~
+      - run: pwd
       # - setup_remote_docker
       # - run: docker ps
       # - run : echo "finished building and uploading docker image"
