@@ -46,9 +46,12 @@ jobs:
   build-image:
     executor: node
     steps:
-      - setup_remote_docker
-      - run: docker ps
-      - run : echo "finished building and uploading docker image"
+      - attach_workspace:
+        at: ~/ci-setup
+      - run: pwd
+      # - setup_remote_docker
+      # - run: docker ps
+      # - run : echo "finished building and uploading docker image"
 
   deploy-to-test-cluster:
     executor: node

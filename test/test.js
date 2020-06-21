@@ -18,7 +18,7 @@ describe('mock mocha test suite', async()=>{
 
 	it('should return test1_ok', async()=>{
     const options = {
-      url: 'https://localhost:8080/test1',
+      url: 'http://localhost:8080/test1',
       method: 'GET'
     }
     let response = await promisifiedRequest(options)
@@ -28,7 +28,7 @@ describe('mock mocha test suite', async()=>{
 
   it('should return test2_ok', async()=>{
     const options = {
-      url: 'https://localhost:8080/test2',
+      url: 'http://localhost:8080/test2',
       method: 'GET'
     }
     let response = await promisifiedRequest(options)
