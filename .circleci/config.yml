@@ -17,6 +17,7 @@ workflows:
           requires:
             - build-image
 
+#default project directory is /home/circleci/project
 jobs:
   unit-test:
     executor: node
@@ -48,9 +49,10 @@ jobs:
     executor: node
     steps:
       - attach_workspace:
-          at: ~/ci-setup
+          at: /home/circleci/project
       - run: pwd
       - run: ls
+      - run: cd ~ && pwd
       # - setup_remote_docker
       # - run: docker ps
       # - run : echo "finished building and uploading docker image"
