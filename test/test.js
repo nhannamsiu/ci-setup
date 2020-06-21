@@ -22,7 +22,7 @@ describe('mock mocha test suite', async()=>{
       method: 'GET'
     }
     let response = await promisifiedRequest(options)
-    assert.equal(response, 'test1_ok')
+    assert.equal(response.body, 'test1_ok')
 	})
   .timeout(10000)
 
@@ -32,7 +32,7 @@ describe('mock mocha test suite', async()=>{
       method: 'GET'
     }
     let response = await promisifiedRequest(options)
-    assert.equal(response, 'test2_ok')
+    assert.equal(response.body, 'test2_ok')
 	})
   .timeout(10000)
 
