@@ -44,11 +44,11 @@ jobs:
       #mocha test
       - run: mkdir ~/junit
       - run:
-        when: always
-        command: mocha test --reporter mocha-junit-reporter
-        environment:
-          MOCHA_FILE: ~/junit/test-results.xml
-     - store_test_results:
+          command: npm test --reporter mocha-junit-reporter
+          environment:
+            MOCHA_FILE: ~/junit/test-results.xml
+          when: always
+      - store_test_results:
           path: ~/junit
       - store_artifacts:
           path: ~/junit
