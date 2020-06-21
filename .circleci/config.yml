@@ -18,6 +18,7 @@ workflows:
             - build-image
 
 #default project directory is /home/circleci/project
+#~ is /home/circleci/project
 jobs:
   unit-test:
     executor: node
@@ -48,10 +49,11 @@ jobs:
   build-image:
     executor: node
     steps:
+      - mkdir foo
       - attach_workspace:
-          at: /home/circleci/project
-      - run: cd ~
-      - run: pwd
+          at: /home/circleci/project/foo
+      - run: ls
+      - run: ls foo
       # - setup_remote_docker
       # - run: docker ps
       # - run : echo "finished building and uploading docker image"
