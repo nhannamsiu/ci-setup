@@ -20,7 +20,6 @@ workflows:
 jobs:
   unit-test:
     executor: node
-    working_directory: ~/ci-setup
     steps:
       - checkout
       - restore_cache:
