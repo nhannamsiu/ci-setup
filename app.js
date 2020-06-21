@@ -13,3 +13,11 @@ app.listen(port, async() => {
 app.get('/', (req,res)=>{
   res.send("Server is running")
 })
+
+app.get('/test1', (req,res)=>{
+  res.send("test1_ok")
+})
+
+app.get('/test2', (req,res)=>{
+  res.send("test2_ok")
+})

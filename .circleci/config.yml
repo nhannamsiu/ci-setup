@@ -20,6 +20,7 @@ workflows:
 jobs:
   unit-test:
     executor: node
+    working_directory: ~/ci-setup
     steps:
       - checkout
       - restore_cache:
@@ -35,7 +36,12 @@ jobs:
           command: node app
           background: true
       - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
-      - run: curl localhost:8080
+      - run: npm test
+      - run: touch log/log.txt
+      - persist_to_workspace:
+          root: ./
+          paths:
+              - ./
 
   build-image:
     executor: node
@@ -43,12 +49,7 @@ jobs:
       - setup_remote_docker
       - run: docker ps
       - run : echo "finished building and uploading docker image"
-      - run:
-          command: node app
-          background: true
-      - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
-      - run: curl localhost:8080
-      
+
   deploy-to-test-cluster:
     executor: node
     steps:
