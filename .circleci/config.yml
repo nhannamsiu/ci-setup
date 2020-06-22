@@ -42,7 +42,6 @@ jobs:
       - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
 
       #mocha test
-      - run: mkdir ./junit
       - run: >
           MOCHA_FILE=./junit/test-results.xml
           ./node_modules/mocha/bin/mocha ./test
