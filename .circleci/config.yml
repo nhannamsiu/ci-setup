@@ -42,18 +42,16 @@ jobs:
       - run: while ! nc -z localhost 8080 ; do sleep 1 ; done
 
       #mocha test
-      - run: mkdir ~/junit
+      - run: mkdir ./junit
       - run:
           command: ./node_modules/mocha/bin/mocha ./test --reporter ./node_modules/mocha-junit-reporter
-          environment:
-            MOCHA_FILE: ~/junit/test-results.xml
           when: always
       - store_test_results:
-          path: ~/junit
+          path: ./junit
       - store_artifacts:
-          path: ~/junit
-
-      - run: ls ../junit
+          path: ./junit
+      - run: ls
+      - run: ls junit
 
       #persist repo to workspace to avoid #prepare repo section
       - persist_to_workspace:
