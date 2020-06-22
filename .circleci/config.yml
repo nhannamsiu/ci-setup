@@ -54,7 +54,7 @@ jobs:
           path: ~/junit
 
       - run: ls
-      - run: cd .. && ls
+      - run: cd .. && ls junit
 
       #persist repo to workspace to avoid #prepare repo section
       - persist_to_workspace:
