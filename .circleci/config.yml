@@ -53,6 +53,9 @@ jobs:
       - store_artifacts:
           path: ~/junit
 
+      - run: ls
+      - run: cd .. && ls
+
       #persist repo to workspace to avoid #prepare repo section
       - persist_to_workspace:
           root: ./
