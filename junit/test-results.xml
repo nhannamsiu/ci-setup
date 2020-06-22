@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0200" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-06-22T15:09:35" tests="0" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="mock mocha test suite" timestamp="2020-06-22T15:09:35" tests="2" file="/Users/macos/Desktop/ci-setup/test/test.js" time="0.0200" failures="0">
+    <testcase name="mock mocha test suite should return test1_ok" time="0.0170" classname="should return test1_ok">
+    </testcase>
+    <testcase name="mock mocha test suite should return test2_ok" time="0.0030" classname="should return test2_ok">
+    </testcase>
+  </testsuite>
+</testsuites>
